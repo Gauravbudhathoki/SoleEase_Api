@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import * as productController from '../controllers/product.controller';
+import { protect, adminOnly } from '../middlewares/auth.middleware';
 
 const router = Router();
 
-router.post('/', productController.createProduct);
 router.get('/', productController.getProducts);
 router.get('/:id', productController.getProductById);
-router.put('/:id', productController.updateProduct);
-router.delete('/:id', productController.deleteProduct);
+
+router.post('/', protect, adminOnly, productController.createProduct);
+router.put('/:id', protect, adminOnly, productController.updateProduct);
+router.delete('/:id', protect, adminOnly, productController.deleteProduct);
 
 export default router;
