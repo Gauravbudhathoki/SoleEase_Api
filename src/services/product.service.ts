@@ -1,4 +1,4 @@
-import { Product, IProduct } from '../models/product.model.js';
+import { Product, IProduct } from '../models/product.model';
 
 export interface ProductQuery {
   category?: string;
